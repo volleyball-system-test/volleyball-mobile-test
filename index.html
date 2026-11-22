@@ -1,10 +1,32 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>全国バレーボール協議会 Ver.0.3.47 公開テスト</title><style>
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>全国バレーボール協議会 Ver.0.3.48 公開テスト</title><style>
 :root{font-family:system-ui,-apple-system,'Yu Gothic',sans-serif;color:#152743;background:#f3f6fb}*{box-sizing:border-box}body{margin:0}header{background:#122344;color:#fff;padding:18px 16px 8px}h1{font-size:18px;line-height:1.5;margin:0}.sub{color:#b7c7e2;font-size:12px;margin:8px 0 15px}.nav{display:flex;gap:7px;overflow-x:auto;padding:8px 0;scrollbar-width:thin}.nav button{flex:0 0 auto;border:0;border-radius:9px;background:#304e7d;color:white;padding:12px;font-size:14px;min-height:44px}.nav button.active{background:#4a7dc1}main{padding:16px;max-width:960px;margin:auto}.notice{background:#fff4df;border:1px solid #edbb67;border-radius:12px;padding:14px;line-height:1.8;margin-bottom:16px}.panel{background:white;border:1px solid #dce4f0;border-radius:14px;padding:18px;margin:14px 0}h2{font-size:21px;margin:4px 0 18px}.field{margin:12px 0}label{display:block;font-weight:700;font-size:13px;margin-bottom:6px}select{width:100%;min-height:44px;padding:8px;font:inherit;border:1px solid #bac9df;border-radius:9px;background:#fff}.hint{font-size:12px;color:#667993;line-height:1.7;margin-top:14px}.scroll{overflow-x:auto}table{border-collapse:collapse;min-width:550px;width:100%;font-size:14px}th,td{text-align:left;border-bottom:1px solid #e0e8f2;padding:12px 10px}th{background:#f2f5fa}p{line-height:1.7}button{cursor:pointer}@media(max-width:600px){main{padding:12px}.panel{padding:14px}table{font-size:13px}}
-</style></head><body><header><h1>新日本スポーツ連盟<br>全国バレーボール協議会 登録システム</h1><div class="sub">Ver.0.3.47 スマホ動作確認用・架空データのみ</div><nav class="nav" id="nav"></nav></header><main><div class="notice"><strong>公開テスト専用：</strong>架空の協議会・チーム・選手のみ表示します。実在する個人情報、ログイン情報、Excel取込、バックアップ読込、データ送信・保存機能はありません。</div><div class="panel"><div class="field"><label for="role">管理者区分（表示確認）</label><select id="role"><option>全国事務局</option><option>都道府県協議会</option><option>地域／ブロック協議会</option></select></div><div class="field"><label for="council">担当協議会（表示確認）</label><select id="council"><option>東京都バレーボール協議会</option><option>千葉県バレーボール協議会</option><option>東日本バレーボール協議会</option></select></div><p class="hint">実システムの権限制御ではありません。メニュー切替と画面幅の確認用です。</p></div><div class="panel" id="view"></div></main><script>
+
+/* Ver.0.3.48: mobile layout only */
+@media(max-width:600px){
+ header{padding:16px 12px 12px}
+ h1{font-size:17px}
+ .sub{font-size:12px;line-height:1.5}
+ .nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;overflow:visible;padding:8px 0 0}
+ .nav button{width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.35;text-align:center;padding:12px 6px;font-size:13px;min-height:48px}
+ main{padding:12px}
+ .notice{padding:12px;line-height:1.65;font-size:13px;overflow-wrap:anywhere}
+ .panel{padding:14px;margin:12px 0}
+ h2{font-size:20px;margin:3px 0 14px}
+ select{font-size:16px}
+ .scroll{overflow:visible}
+ table{display:block;min-width:0;width:100%;font-size:14px}
+ thead{display:none}
+ tbody{display:grid;gap:10px}
+ tr{display:block;border:1px solid #dce4f0;border-radius:10px;padding:6px 10px;background:#fff}
+ td{display:grid;grid-template-columns:minmax(85px,36%) minmax(0,1fr);gap:10px;align-items:start;padding:9px 0;border-bottom:1px solid #e7edf5;overflow-wrap:anywhere;word-break:normal}
+ td:last-child{border-bottom:0}
+ td::before{content:attr(data-label);font-weight:700;color:#52647e;font-size:12px}
+}
+</style></head><body><header><h1>新日本スポーツ連盟<br>全国バレーボール協議会 登録システム</h1><div class="sub">Ver.0.3.48 スマホ動作確認用・架空データのみ</div><nav class="nav" id="nav"></nav></header><main><div class="notice"><strong>公開テスト専用：</strong>架空の協議会・チーム・選手のみ表示します。実在する個人情報、ログイン情報、Excel取込、バックアップ読込、データ送信・保存機能はありません。</div><div class="panel"><div class="field"><label for="role">管理者区分（表示確認）</label><select id="role"><option>全国事務局</option><option>都道府県協議会</option><option>地域／ブロック協議会</option></select></div><div class="field"><label for="council">担当協議会（表示確認）</label><select id="council"><option>東京都バレーボール協議会</option><option>千葉県バレーボール協議会</option><option>東日本バレーボール協議会</option></select></div><p class="hint">実システムの権限制御ではありません。メニュー切替と画面幅の確認用です。</p></div><div class="panel" id="view"></div></main><script>
 const pages=['ダッシュボード','協議会マスター','チームマスター','選手登録','レンタル選手','Excel取込','ログインIDマスター'];
 const teams=[{id:'DEMO-001',name:'サンプルA',c:'東京都バレーボール協議会'},{id:'DEMO-002',name:'サンプルB',c:'千葉県バレーボール協議会'}];
 const players=[{id:'DEMO-001-0001',name:'テスト 太郎',team:'サンプルA',c:teams[0].c},{id:'DEMO-002-0001',name:'テスト 花子',team:'サンプルB',c:teams[1].c}];let page=0;
-function table(headers,rows){return '<div class="scroll"><table><thead><tr>'+headers.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(v=>'<td>'+v+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'}
+function table(headers,rows){return '<div class="scroll"><table><thead><tr>'+headers.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map((v,j)=>'<td data-label="'+headers[j]+'">'+v+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'}
 function render(){document.getElementById('nav').innerHTML=pages.map((p,i)=>'<button type="button" class="'+(i===page?'active':'')+'" data-i="'+i+'">'+p+'</button>').join('');const role=document.getElementById('role').value,c=document.getElementById('council').value;const filter=x=>role==='全国事務局'||x.c===c;let body='';
 if(page===0)body='<p>スマホでの画面切替を確認するための独立したデモです。</p><p>サンプル協議会：3件 ／ サンプルチーム：2件 ／ サンプル選手：2件</p>';
 if(page===1)body=table(['協議会名'],['東京都バレーボール協議会','千葉県バレーボール協議会','東日本バレーボール協議会'].map(x=>[x]));
